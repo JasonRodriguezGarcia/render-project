@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 
 // const allowedOrigins = ['https://render-project-jrg-frontend.onrender.com/'];
 
-const allowedOrigins = ['${VITE_FRONTEND_URL_RENDER}'];
+const allowedOrigins = process.env.FRONTEND_URL_RENDER;
 
 app.use(cors({
   origin: function(origin, callback){

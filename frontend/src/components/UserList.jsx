@@ -9,7 +9,7 @@ export default function UserList() {
 
   useEffect(() => {
     // fetch('http://localhost:5000/api/v1/users/') 
-    fetch('${VITE_BACKEND_URL_RENDER}') 
+    fetch(`${VITE_BACKEND_URL_RENDER}`) 
       .then((res) => {
         if (!res.ok) throw new Error('Network response was not ok');
         return res.json();
