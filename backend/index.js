@@ -4,6 +4,24 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+
+// const allowedOrigins = ['https://render-project-jrg-frontend.onrender.com/'];
+
+const allowedOrigins = ['${VITE_FRONTEND_URL_RENDER}'];
+
+app.use(cors({
+  origin: function(origin, callback){
+    // allow requests with no origin (like curl, postman)
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true, // if you need to send cookies/auth headers
+}));
+
 // Middleware
 app.use(cors({ origin: '*' }));  // specify ruta aqui
 app.use(express.json());

@@ -5,9 +5,11 @@ export default function UserList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const VITE_BACKEND_URL_RENDER = import.meta.env.VITE_BACKEND_URL_RENDER
+
   useEffect(() => {
     // fetch('http://localhost:5000/api/v1/users/') 
-    fetch('https://render-project-jrg.onrender.com/api/v1/users') 
+    fetch('${VITE_BACKEND_URL_RENDER}') 
       .then((res) => {
         if (!res.ok) throw new Error('Network response was not ok');
         return res.json();
